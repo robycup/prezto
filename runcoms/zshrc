@@ -11,3 +11,21 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+export GOPATH=$HOME/go
+PATH=$PATH:$GOPATH/bin
+
+alias topc='ps -eo pcpu,pid,user,args | sort -k1 -r | head -10'
+alias api='ssh ec2-user@ec2-54-229-6-12.eu-west-1.compute.amazonaws.com'
+alias public='ssh ec2-user@ec2-52-215-188-164.eu-west-1.compute.amazonaws.com'
+alias public2='ssh ec2-user@ec2-34-245-192-149.eu-west-1.compute.amazonaws.com'
+alias preprod='ssh ubuntu@preprod.admin.xtralife.com'
+alias estunnel='echo 9211 && ssh -N -L \*:9211:vpc-ecommplat-tvq5dsrtdrlotlio5t42oohq3y.eu-west-1.es.amazonaws.com:80  ec2-user@ec2-54-229-6-12.eu-west-1.compute.amazonaws.com -p 22'
+alias dbtunnel='echo 3310 && ssh -N -L \*:3310:ecommplat.c4fixqs3ajdg.eu-west-1.rds.amazonaws.com:3306  ec2-user@ec2-54-229-6-12.eu-west-1.compute.amazonaws.com -p 22'
+alias kbtunnel='ssh -N -L \*:9243:vpc-ecommplat-tvq5dsrtdrlotlio5t42oohq3y.eu-west-1.es.amazonaws.com:443  ec2-user@ec2-54-229-6-12.eu-west-1.compute.amazonaws.com -p 22'
+alias beanstalktunnel='echo 2081 && ssh -N -L \*:2081:172.31.34.91:2080  ec2-user@ec2-54-229-6-12.eu-west-1.compute.amazonaws.com -p 22'
+alias legacytunnel='ssh -N -L \*:3307:localhost:3306 xtralife@xtralife.es -p 22122'
+alias supervisortunnel='echo 9012 && ssh -N -L \*:9012:localhost:9011  ec2-user@ec2-54-229-6-12.eu-west-1.compute.amazonaws.com -p 22'
+alias mongotunnel='echo 27020 && ssh -N -L \*:27020:172.31.34.91:27017  ec2-user@ec2-54-229-6-12.eu-west-1.compute.amazonaws.com -p 22'
+alias offtunnels="ps aux | grep -ie :9211 -ie :3310 -ie :9243 -ie :2081 -ie :9012 | awk '{print \$2}' | xargs kill -9" 
+
+alias phpstan='docker run -v $PWD:/app --rm phpstan/phpstan'
